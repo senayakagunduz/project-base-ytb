@@ -1,3 +1,5 @@
+if(process.env.NODE_ENV !== "production")
+  require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -24,8 +26,8 @@ app.use((req, res, next) =>{
     next();
 })
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', require('./routes/index'));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
